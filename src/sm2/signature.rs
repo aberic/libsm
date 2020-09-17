@@ -234,6 +234,20 @@ impl SigCtx {
         r_ == *sig.get_r()
     }
 
+    pub fn new_sk(&self) -> BigUint {
+        let curve = &self.curve;
+        let mut sk: BigUint = curve.random_uint();
+
+        loop {
+            if !pk.is_zero() {
+                break;
+            }
+            sk = curve.random_uint();
+        }
+
+        sk
+    }
+
     pub fn new_keypair(&self) -> (Point, BigUint) {
         let curve = &self.curve;
         let mut sk: BigUint = curve.random_uint();
