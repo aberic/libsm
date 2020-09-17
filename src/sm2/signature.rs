@@ -236,16 +236,7 @@ impl SigCtx {
 
     pub fn new_sk(&self) -> BigUint {
         let curve = &self.curve;
-        let mut sk: BigUint = curve.random_uint();
-
-        loop {
-            if !pk.is_zero() {
-                break;
-            }
-            sk = curve.random_uint();
-        }
-
-        sk
+        curve.random_uint()
     }
 
     pub fn new_keypair(&self) -> (Point, BigUint) {
